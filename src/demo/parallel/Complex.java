@@ -99,9 +99,14 @@ public class Complex {
      * Division operation.
      * @param b divisor
      * @return this Complex object whose value is this / b
+     * * @throws ArithmeticException if divisor is zero
      */
+
     public Complex divide(Complex b) {
         double denominator = b.re * b.re + b.im * b.im;
+        if (Math.abs(denominator) < 1e-10) {
+            throw new ArithmeticException("Division by zero");
+        }
         double real = (re * b.re + im * b.im) / denominator;
         double imag = (im * b.re - re * b.im) / denominator;
         re = real;
